@@ -32,3 +32,4 @@ elif [ "$1" = 'stop' ]; then
 	timeout 65 ssh $HOST $OPTS 'screen -dm -c /home/pi/.screenrc.stop';
 fi
 ```
+In the case of my system, im useing Homebridge Calender to signal a start and stop and internal homekit automation to start and stop
