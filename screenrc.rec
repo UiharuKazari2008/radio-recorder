@@ -1,0 +1,29 @@
+shell -$SHELL
+terminfo rxvt-unicode ti@:te@:
+setenv LC_CTYPE en_US.UTF-8
+defutf8 on
+setenv DISPLAY ':0'
+nonblock on
+startup_message off
+termcapinfo rxvt-unicode ti@:te@     #enable SHIFT-PGUP / SHIFT-PGDOWN scroll
+altscreen on
+attrcolor b ".I"
+term screen-256color
+defscrollback 9000
+autodetach on
+
+bind ',' prev  # change window with ,
+bind '.' next  # change window with .
+
+bindkey "^[Od" prev  # change window with ctrl-left
+bindkey "^[Oc" next  # change window with ctrl-right
+
+hardstatus alwayslastline
+hardstatus string '%{= rW} Fremea %{= kw} %?%-Lw%?%{+b Rk}%n:%f%t%?(%u)%?%{= kw}%?%+Lw%?%?%= %{= rW} %M %d %{W}%c '
+caption always '%{= rW} %n [%t] '
+
+# Setup Inital Windows
+screen -t Recording bash /home/pi/record.bash rec
+screen -t Metadata bash /home/pi/metadata.bash
+select 0
+detach
