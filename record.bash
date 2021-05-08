@@ -1,5 +1,6 @@
 # Recorder Settings
 REC_DEVICE='hw:CARD=CODEC,DEV=0'
+DEVICE_IP='192.168.100.77'
 REC_PREFIX='SiriusXM_'
 REC_DIR='/home/pi/rec'
 
@@ -21,7 +22,7 @@ APIServer=''
 echo "Lizumi-Kanmi Radio/Audio Recorder for UNIX and Linux v8.1"
 
 if [ "$1" = 'rec' ]; then
-	if [ "$(ping 192.168.100.77 -c 1 > /dev/null && echo 'true' || echo 'false')" = 'true' ]; then
+	if [ "$(ping ${DEVICE_IP} -c 1 > /dev/null && echo 'true' || echo 'false')" = 'true' ]; then
 		if [ $ENABLE_NOTIFY = 1]; then
 			timeout 15 wget -qO- -d --header="X-WSS-Key: ${WSSKey}" --header="User-Agent: KanmiMessager/${SYSID}" \
 			--post-data message="Started Recording the Radio!&channel=info&event=undefined" ${APIServer}/endpoint/sendNotification &
